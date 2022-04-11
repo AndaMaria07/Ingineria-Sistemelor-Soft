@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="771.0" style="-fx-background-color: linear-gradient(#e66465, #9198e5); -fx-background-radius: 30px;" stylesheets="@../../../css/table.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="99.0" layoutY="120.0" prefHeight="218.0" prefWidth="585.0" style="-fx-background-color: gray; -fx-background-radius: 30px;" stylesheets="@../../../css/table.css">
+         <columns>
+            <TableColumn prefWidth="172.79998779296875" text="Name" />
+            <TableColumn prefWidth="208.0" text="Price" />
+            <TableColumn prefWidth="198.39996337890625" text="Quantity" />
+         </columns>
+         <styleClass>
+            <String fx:value="column-header" />
+            <String fx:value="track" />
+            <String fx:value="column-header-background" />
+            <String fx:value="corner" />
+            <String fx:value="decrement-button" />
+            <String fx:value="filler" />
+            <String fx:value="highlighted" />
+            <String fx:value="increment-button" />
+            <String fx:value="virtual-flow" />
+            <String fx:value="track-background" />
+            <String fx:value="track" />
+            <String fx:value="thumb" />
+            <String fx:value="table-row-cell" />
+            <String fx:value="table-cell" />
+            <String fx:value="selected" />
+            <String fx:value="scroll-bar" />
+         </styleClass>
+      </TableView>
+      <Text layoutX="278.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Managing products" wrappingWidth="244.53668212890625">
+         <font>
+            <Font name="Georgia" size="23.0" />
+         </font>
+      </Text>
+      <Button layoutX="494.0" layoutY="376.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" style="-fx-background-radius: 30px;" text="Add product" />
+      <TextField alignment="CENTER" layoutX="184.0" layoutY="371.0" prefHeight="35.0" prefWidth="149.0" promptText="Product name" />
+      <TextField alignment="CENTER" layoutX="184.0" layoutY="421.0" prefHeight="35.0" prefWidth="149.0" promptText="Price" />
+      <TextField alignment="CENTER" layoutX="184.0" layoutY="468.0" prefHeight="35.0" prefWidth="149.0" promptText="Available Quantity" />
+      <Text fill="#0000008e" fontSmoothingType="LCD" layoutX="481.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select product for updateing it" wrappingWidth="212.947998046875">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Text>
+      <Button layoutX="494.0" layoutY="413.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" style="-fx-background-radius: 30px;" text="Update product" />
+      <Button layoutX="494.0" layoutY="473.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" style="-fx-background-radius: 30px;" text="Delete product" />
+      <Text fill="#0000008e" fontSmoothingType="LCD" layoutX="479.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select product for deleting it" textAlignment="CENTER" wrappingWidth="204.94793701171875">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="16.0" fitWidth="15.0" layoutX="456.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/icons8_high_priority_16.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="456.0" layoutY="509.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/icons8_high_priority_16.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>

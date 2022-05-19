@@ -23,7 +23,6 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-    mainModule = 'com.example.shoporderingsystem'
     mainClass = 'com.example.shoporderingsystem.HelloApplication'
 }
 
@@ -41,7 +40,17 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    implementation 'org.hibernate:hibernate-core:5.2.10.Final'
+    runtimeOnly group: 'org.xerial', name: 'sqlite-jdbc', version: '3.36.0.3'
+    implementation 'org.springframework:spring-context:4.3.8.RELEASE'
+    // JAX-B dependencies for JDK 9+
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.2'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.2'
+    implementation 'org.javassist:javassist:3.25.0-GA'
+
 }
+
+
 
 test {
     useJUnitPlatform()

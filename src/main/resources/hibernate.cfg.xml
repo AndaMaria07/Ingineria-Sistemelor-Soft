@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <property name="dialect">com.example.shoporderingsystem.repository.dialect.SQLiteDialect</property>
+        <!--<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>-->
+        <property name="connection.driver_class">org.sqlite.JDBC</property>
+        <property name="connection.url">jdbc:sqlite:D:/Facultate/Anul 2/Sem2/ISS/lab/identifier.sqlite</property>
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+
+        <mapping class="com.example.shoporderingsystem.domain.Administrator"/>
+        <mapping class="com.example.shoporderingsystem.domain.SalesMan"/>
+        <mapping class="com.example.shoporderingsystem.domain.Product"/>
+
+    </session-factory>
+</hibernate-configuration>

@@ -1,6 +1,5 @@
 package com.example.shoporderingsystem.controller;
 import com.example.shoporderingsystem.HelloApplication;
-import com.example.shoporderingsystem.domain.Company;
 import com.example.shoporderingsystem.domain.Product;
 import com.example.shoporderingsystem.domain.User;
 import com.example.shoporderingsystem.utils.UtilMethods;
@@ -40,7 +39,7 @@ public class ManagerViewController {
     @FXML
     public TableColumn<Product,Integer> quantityColumn;
     private ObservableList<Product> productsModels = FXCollections.observableArrayList();
-
+    int id;
 
     public void setController(Controller controller) {
         this.controller = controller;
@@ -49,6 +48,10 @@ public class ManagerViewController {
 
     public void setStage(Stage stage) {
         this.primaryStage = stage;
+    }
+
+    public void setUser(User logged) {
+        this.logged = logged;
     }
 
     @FXML
@@ -60,12 +63,6 @@ public class ManagerViewController {
     }
 
     public void initModel(){
-        ObservableList<String> listPicker = FXCollections.observableArrayList();
-        listPicker.add("Avon");
-        listPicker.add("Abc");
-        listPicker.add("Tranvis");
-        listPicker.add("Dedeman");
-        picker.setItems(listPicker);
         List<Product> products = controller.getProducts();
         productsModels.setAll(products);
     }
@@ -74,13 +71,73 @@ public class ManagerViewController {
         String nameStr = name.getText();
         String priceStr = price.getText();
         String quantityStr = quantity.getText();
-        String companyStr = picker.getValue();
         try {
-            HelloApplication.getController().addProduct(nameStr, priceStr, quantityStr, companyStr);
+            HelloApplication.getController().addProduct(nameStr, priceStr, quantityStr);
             initModel();
 
         } catch (Exception exc) {
             UtilMethods.showErrorDialog(exc.getMessage());
         }
+    }
+
+    public void onUpdateButtonCliked() {
+        String nameStr = name.getText();
+        String priceStr = price.getText();
+        String quantityStr = quantity.getText();
+        try {
+            HelloApplication.getController().updateProduct(id,nameStr, priceStr, quantityStr);
+            initModel();
+
+        } catch (Exception exc) {
+            UtilMethods.showErrorDialog(exc.getMessage());
+        }
+    }
+
+    public void onDeleteButtonCliked() {
+        String nameStr = name.getText();
+        String priceStr = price.getText();
+        String quantityStr = quantity.getText();
+        String companyStr = picker.getValue();
+        try {
+            HelloApplication.getController().deleteProduct(id,nameStr, priceStr, quantityStr, companyStr);
+            initModel();
+
+        } catch (Exception exc) {
+            UtilMethods.showErrorDialog(exc.getMessage());
+        }
+    }
+
+    @FXML
+    public void populateTextFields(){
+        id = productsTable.getSelectionModel().getSelectedItem().getId();
+        Product selected = productsTable.getSelectionModel().getSelectedItem();
+        name.setText(selected.getName());
+        price.setText(String.valueOf(selected.getPrice()));
+        quantity.setText(String.valueOf(selected.getQuantity()));
+    }
+
+
+    @FXML
+    public void onCartButtonClicked() throws IOException {
+        FXMLLoader cartWindowLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/shoporderingsystem/views/cartView.fxml"));
+        Scene cartScene = new Scene(cartWindowLoader.load());
+        primaryStage.setTitle("Shopping Cart");
+        primaryStage.setScene(cartScene);
+        CartController cartController = cartWindowLoader.getController();
+        cartController.setController(controller);
+        cartController.setStage(primaryStage);
+        cartController.setUser(logged);
+    }
+
+    @FXML
+    public void onHomeButtonClicked() throws IOException {
+        FXMLLoader homeWindowLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/shoporderingsystem/views/mainPage.fxml"));
+        Scene homeScene = new Scene(homeWindowLoader.load());
+        primaryStage.setTitle("Shopping Cart");
+        primaryStage.setScene(homeScene);
+        MainPageController mainPageController = homeWindowLoader.getController();
+        mainPageController.setController(controller);
+        mainPageController.setStage(primaryStage);
+        mainPageController.setUser(logged);
     }
 }

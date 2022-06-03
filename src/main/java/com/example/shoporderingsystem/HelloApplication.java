@@ -48,8 +48,8 @@ public class HelloApplication extends Application {
 
         UserRepositoryInterface employeeRepositoryInterface = new UserRepository(sessionFactory);
         ProductRepositoryInterface productRepositoryInterface = new ProductRepository(sessionFactory);
-        CompanyRepositoryInterface companyRepositoryInterface = new CompanyRepository("jdbc:sqlite:D:/Facultate/Anul 2/Sem2/ISS/lab/identifier.sqlite");
-        setController(new Controller(employeeRepositoryInterface,productRepositoryInterface,companyRepositoryInterface));
+        OrderRepositoryInterface orderRepositoryInterface = new OrderRepository("jdbc:sqlite:D:/Facultate/Anul 2/Sem2/ISS/lab/identifier.sqlite");
+        setController(new Controller(employeeRepositoryInterface,productRepositoryInterface,orderRepositoryInterface));
         FXMLLoader logInWindowLoader = new FXMLLoader(getClass().getResource("/com/example/shoporderingsystem/views/logIn.fxml"));
         logInScene = new Scene(logInWindowLoader.load(), 612, 341);
         logInScene.setFill(Color.TRANSPARENT);

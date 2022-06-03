@@ -19,14 +19,11 @@ public class Product {
     private Double price;
     @Column(name = "quantity",nullable = false)
     private int quantity;
-    @Column(name = "company",nullable = false)
-    private int idCompany;
 
-    public Product(String name, Double price, int quantity, int idCompany) {
+    public Product(String name, Double price, int quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
-        this.idCompany = idCompany;
     }
 
     public Product(){}
@@ -63,25 +60,18 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public int getCompany() {
-        return idCompany;
-    }
-
-    public void setCompany(int company) {
-        this.idCompany = company;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Id == product.Id && quantity == product.quantity && Objects.equals(name, product.name) && Objects.equals(price, product.price) && Objects.equals(idCompany, product.idCompany);
+        return Id == product.Id && quantity == product.quantity && Objects.equals(name, product.name) && Objects.equals(price, product.price) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Id, name, price, quantity, idCompany);
+        return Objects.hash(Id, name, price, quantity);
     }
 
     @Override
@@ -91,7 +81,6 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", quantity=" + quantity +
-                ", company=" + idCompany +
                 '}';
     }
 }

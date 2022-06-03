@@ -1,9 +1,8 @@
 package com.example.shoporderingsystem.controller;
-
-import com.example.shoporderingsystem.domain.Company;
+import com.example.shoporderingsystem.domain.Order;
 import com.example.shoporderingsystem.domain.Product;
 import com.example.shoporderingsystem.domain.User;
-import com.example.shoporderingsystem.repository.CompanyRepositoryInterface;
+import com.example.shoporderingsystem.repository.OrderRepositoryInterface;
 import com.example.shoporderingsystem.repository.ProductRepositoryInterface;
 import com.example.shoporderingsystem.repository.UserRepositoryInterface;
 
@@ -14,12 +13,18 @@ public class Controller {
 
     private UserRepositoryInterface userRepositoryInterface;
     private ProductRepositoryInterface productRepositoryInterface;
-    private CompanyRepositoryInterface companyRepositoryInterface;
+    private OrderRepositoryInterface orderRepositoryInterface;
+    private List<Product> productsForCart;
 
-    public Controller(UserRepositoryInterface userRepositoryInterface,ProductRepositoryInterface productRepositoryInterface,CompanyRepositoryInterface companyRepositoryInterface) {
+    public Controller(UserRepositoryInterface userRepositoryInterface, ProductRepositoryInterface productRepositoryInterface, OrderRepositoryInterface orderRepositoryInterface) {
         this.userRepositoryInterface = userRepositoryInterface;
         this.productRepositoryInterface = productRepositoryInterface;
-        this.companyRepositoryInterface = companyRepositoryInterface;
+        this.orderRepositoryInterface = orderRepositoryInterface;
+        this.productsForCart = new ArrayList<>();
+    }
+
+    public void setProductsForCart(List<Product> productsForCart) {
+        this.productsForCart = productsForCart;
     }
 
     public User findOneByNameAndPassword(String userName, String password) throws Exception {
@@ -31,23 +36,50 @@ public class Controller {
         List<Product> products = new ArrayList<>();
         products = productRepositoryInterface.findAll();
         return products;
-
     }
 
-    public void addProduct(String name, String price, String quantity, String companyStr){
-        List<Company> companies = companyRepositoryInterface.findAll();
-        for(Company company : companies)
-            if(company.getName().equals(companyStr)) {
-                Product p = new Product(name, Double.parseDouble(price), Integer.parseInt(quantity), company.getId());
-                productRepositoryInterface.add(p);
-                break;
+    public void addProduct(String name, String price, String quantity){
+        Product p = new Product(name, Double.parseDouble(price), Integer.parseInt(quantity));
+        productRepositoryInterface.add(p);
+    }
+
+    public void updateProduct(int id,String name, String price, String quantity){
+        Product p = new Product(name, Double.parseDouble(price), Integer.parseInt(quantity));
+        p.setId(id);
+        productRepositoryInterface.update(p);
+    }
+
+    public void deleteProduct(int id,String name, String price, String quantity, String companyStr){
+        Product p = new Product(name, Double.parseDouble(price), Integer.parseInt(quantity));
+        p.setId(id);
+        productRepositoryInterface.delete(p);
+    }
+
+    public List<Product> getProductsForCart(){
+        return productsForCart;
+    }
+
+    public void addInCart(Product p){
+        productsForCart.add(p);
+    }
+
+    public List<Order> getOrders() {
+        return orderRepositoryInterface.findAll();
+    }
+
+    public void addOrder(Order order){
+        orderRepositoryInterface.add(order);
+    }
+
+    public void modifyCart(Product selected, String q) {
+        for(Product p : productsForCart){
+            if(p.equals(selected)){
+                p.setQuantity(Integer.parseInt(q));
             }
+        }
     }
 
-    public List<Company> getCompanies(){
-        List<Company> companies = new ArrayList<>();
-        companies = companyRepositoryInterface.findAll();
-        return companies;
-
+    public void deleteFromCart(Product selected) {
+        productsForCart.remove(selected);
     }
 }

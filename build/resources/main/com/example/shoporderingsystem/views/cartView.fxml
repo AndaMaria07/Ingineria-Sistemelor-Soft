@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="522.0" prefWidth="800.0" style="-fx-background-radius: 30px;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.shoporderingsystem.controller.CartController">
+   <children>
+      <Pane layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(#e66465, #9198e5); -fx-background-radius: 30px;" stylesheets="@../../../../css/table.css">
+         <children>
+            <TableView fx:id="productsTable" layoutX="114.0" layoutY="98.0" prefHeight="225.0" prefWidth="656.0" style="-fx-background-color: gray; -fx-background-radius: 30px;" styleClass="decrement-button">
+               <columns>
+                  <TableColumn fx:id="nameColumn" prefWidth="196.79991149902344" text="Name" />
+                  <TableColumn fx:id="priceColumn" prefWidth="239.20001220703125" text="Price" />
+                  <TableColumn fx:id="quantityColumn" prefWidth="290.4000244140625" text="Quantity" />
+               </columns>
+            </TableView>
+            <Text layoutX="363.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Shopping Cart" wrappingWidth="160.0">
+               <font>
+                  <Font name="Georgia" size="23.0" />
+               </font>
+            </Text>
+            <TextField fx:id="quantityText" alignment="CENTER" layoutX="169.0" layoutY="364.0" prefHeight="26.0" prefWidth="160.0" promptText="Quantity" />
+            <Text fill="#0000008e" fontSmoothingType="LCD" layoutX="169.0" layoutY="351.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select product for updateing it" wrappingWidth="212.947998046875">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Text>
+            <Button layoutX="169.0" layoutY="401.0" mnemonicParsing="false" onAction="#onUpdateButtonClicked" prefHeight="25.0" prefWidth="160.0" style="-fx-background-radius: 30px;" text="Update product" />
+            <Button layoutX="557.0" layoutY="377.0" mnemonicParsing="false" onAction="#onDeleteButtonClicked" prefHeight="25.0" prefWidth="160.0" style="-fx-background-radius: 30px;" text="Delete product" />
+            <Text fill="#0000008e" fontSmoothingType="LCD" layoutX="535.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select product for deleting it" textAlignment="CENTER" wrappingWidth="204.94793701171875">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="16.0" fitWidth="15.0" layoutX="129.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../images/icons8_high_priority_16.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="516.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../images/icons8_high_priority_16.png" />
+               </image>
+            </ImageView>
+            <VBox prefHeight="522.0" prefWidth="60.0" style="-fx-background-color: grey; -fx-background-radius: 30 0 0 30;">
+               <children>
+                  <ImageView fx:id="navHome" fitHeight="41.0" fitWidth="37.0" onMouseClicked="#onHomeButtonClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/icons8_home2_32.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="10.0" top="50.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="navCart" fitHeight="44.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/icons8_shopping_car2t_32.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="10.0" top="30.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="41.0" fitWidth="43.0" onMouseClicked="#onViewProductsButtonClick" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/icons8_remove_borders_32.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="10.0" top="30.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="41.0" fitWidth="43.0" onMouseClicked="#onManageProductsButtonClick" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/icons8_administrative_tools_32.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="10.0" top="30.0" />
+                     </VBox.margin>
+                  </ImageView>
+               </children>
+            </VBox>
+            <ImageView fitHeight="48.0" fitWidth="51.0" layoutX="329.0" layoutY="457.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../images/icons8_discount_shipping_32.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="41.0" fitWidth="47.0" layoutX="511.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../images/icons8_11discount_32.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="387.0" layoutY="461.0" mnemonicParsing="false" onAction="#onPlaceOrderButtonClicked" prefHeight="41.0" prefWidth="112.0" style="-fx-background-radius: 30px;" text="Place order">
+               <effect>
+                  <DropShadow />
+               </effect></Button>
+         </children>
+         <effect>
+            <DropShadow height="0.0" radius="0.0" width="0.0" />
+         </effect>
+      </Pane>
+   </children>
+   <effect>
+      <DropShadow height="23.34" radius="11.7675" spread="1.0" width="25.73" />
+   </effect>
+</AnchorPane>

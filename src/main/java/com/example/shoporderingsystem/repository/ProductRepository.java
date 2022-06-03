@@ -5,6 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 public class ProductRepository implements ProductRepositoryInterface{
@@ -23,7 +26,7 @@ public class ProductRepository implements ProductRepositoryInterface{
                 try {
                     tx = session.beginTransaction();
                     Product product = null;
-                    product = new Product(elem.getName(),elem.getPrice(),elem.getQuantity(),elem.getCompany());
+                    product = new Product(elem.getName(),elem.getPrice(),elem.getQuantity());
                     session.save(product);
                     tx.commit();
                 } catch (RuntimeException ex) {
@@ -38,12 +41,48 @@ public class ProductRepository implements ProductRepositoryInterface{
 
     @Override
     public void delete(Product elem) {
-
+        try {
+            try (Session session = sessionFactory.openSession()) {
+                Transaction tx = null;
+                try {
+                    tx = session.beginTransaction();
+                    elem = session.createQuery("from Product where Id ='" + elem.getId() + "'", Product.class)
+                            .setMaxResults(1)
+                            .uniqueResult();
+                    session.delete(elem);
+                    tx.commit();
+                } catch (RuntimeException ex) {
+                    if (tx != null)
+                        tx.rollback();
+                }
+            }
+        } catch (Exception ex) {
+            System.err.println("Error: " + ex);
+        }
     }
 
     @Override
-    public void update(Product elem) {
-
+    public void update(Product product) {
+        try {
+            try (Session session = sessionFactory.openSession()) {
+                Transaction tx = null;
+                try {
+                    tx = session.beginTransaction();
+                    Product product1 = null;
+                    product1 = session.load(Product.class, product.getId());
+                    product1.setName(product.getName());
+                    product1.setPrice(product.getPrice());
+                    product1.setQuantity(product.getQuantity());
+                    session.update(product1);
+                    tx.commit();
+                } catch (RuntimeException ex) {
+                    if (tx != null)
+                        tx.rollback();
+                }
+            }
+        } catch (Exception ex) {
+            System.err.println("Error: " + ex);
+        }
     }
 
     @Override
